@@ -1,0 +1,22 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="android:buttonStyle">@style/CustomButtonStyle</item>
+    </style>
+
+    <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/circle</item>
+        <!-- Add your custom button style attributes here -->
+    </style>
+
+    <style name="NunitoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">nunito_variable_font_wght</item>
+    </style>
+
+    <style name="CustomAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/main</item>
+        <item name="android:textColorPrimary">@color/text_color_main</item>
+    </style>
+
+
+
+</resources>

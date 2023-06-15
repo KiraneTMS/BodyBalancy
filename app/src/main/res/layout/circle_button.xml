@@ -1,0 +1,40 @@
+<!-- grid_item_shape.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <FrameLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/shapeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/circle"
+            android:scaleType="fitCenter"
+            android:foreground="@drawable/circle" />
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_person" />
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/shapeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Item"
+        android:textColor="@color/text_color"
+        android:background="@drawable/popup_background"
+        android:layout_marginTop="8dp"
+        android:gravity="center"/>
+
+</LinearLayout>

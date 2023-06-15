@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "246687032439",
+    "project_id": "capstone-bangkit-2023-boby",
+    "storage_bucket": "capstone-bangkit-2023-boby.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246687032439:android:6ff58785411a3fc4269272",
+        "android_client_info": {
+          "package_name": "com.example.bodybalancy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246687032439-1pd8f50ea8hd6o5slo0sdv6pkrjtaeq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjXuCDPYoW4ceYhiaAwYCTZLMUOKH6nxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246687032439-1pd8f50ea8hd6o5slo0sdv6pkrjtaeq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
