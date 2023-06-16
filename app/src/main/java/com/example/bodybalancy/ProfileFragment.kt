@@ -65,6 +65,9 @@ class ProfileFragment : Fragment() {
         setDetailValue()
         setProfileValue()
 
+        binding.personImageview.visibility = View.GONE
+        binding.shapeImageView.visibility = View.GONE
+
         sharedPreferences = requireContext().getSharedPreferences("WeightType", Context.MODE_PRIVATE)
 
         val userWeightType = sharedPreferences.getString("Weight Type", null)
@@ -383,8 +386,7 @@ class ProfileFragment : Fragment() {
     }
 
     fun saveDetailUser(height: Float, weight: Float, age: Int, obesityHistory: Int, favc: Int) {
-
-        if (auth.currentUser == null){
+        if (auth.currentUser == null) {
             Toast.makeText(context, "Please login to use this feature", Toast.LENGTH_SHORT).show()
             return
         }
@@ -392,25 +394,40 @@ class ProfileFragment : Fragment() {
         val collectionRef = firestore.collection("user_detail")
         val documentId = auth.currentUser?.email.toString()
 
-        val data = hashMapOf(
-
-            "age" to age,
-            "favc" to favc,
-            "height" to height,
-            "obesity_history" to obesityHistory,
-            "weight" to weight
-        )
-
         collectionRef.document(documentId)
-            .set(data)
-            .addOnSuccessListener {
-                // Data successfully saved with custom document ID
-                Toast.makeText(context, "Successfully add data", Toast.LENGTH_SHORT).show()
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    println("Document Exist")
+                    val gender = document.getString("gender") ?: ""
+
+                    val data = hashMapOf(
+                        "age" to age,
+                        "favc" to favc,
+                        "height" to height,
+                        "obesity_history" to obesityHistory,
+                        "weight" to weight,
+                        "gender" to gender
+                    )
+
+                    collectionRef.document(documentId)
+                        .set(data)
+                        .addOnSuccessListener {
+                            // Data successfully saved with custom document ID
+                            Toast.makeText(context, "Successfully add data", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            // An error occurred while saving the data
+                            Toast.makeText(context, "Failed to add data", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    println("Document Does Not Exist")
+                }
             }
             .addOnFailureListener { exception ->
-                // An error occurred while saving the data
-
-                Toast.makeText(context, "Failed to add data", Toast.LENGTH_SHORT).show()
+                // Handle the failure to fetch document data from Firestore
+                Toast.makeText(requireContext(), "Failed to fetch document data", Toast.LENGTH_SHORT).show()
+                println("Error fetching document: ${exception.message}")
             }
     }
 
