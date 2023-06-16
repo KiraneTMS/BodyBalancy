@@ -1,5 +1,6 @@
 package com.example.bodybalancy
 
+import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
@@ -25,6 +26,7 @@ import com.example.bodybalancy.databinding.FragmentProfileBinding
 import com.example.bodybalancy.databinding.PopupFormBinding
 import com.example.bodybalancy.databinding.ProfilePopupFormBinding
 import com.example.bodybalancy.models.ProfileViewModel
+//import com.example.bodybalancy.utils.ImageUploadHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
@@ -149,30 +151,35 @@ class ProfileFragment : Fragment() {
         viewModel.name.observe(viewLifecycleOwner) { name ->
             popupBinding.editName.setText(name)
         }
-        viewModel.email.observe(viewLifecycleOwner) { email ->
-            popupBinding.editEmail.setText(email)
-        }
+//        viewModel.email.observe(viewLifecycleOwner) { email ->
+//            popupBinding.editEmail.setText(email)
+//        }
 
         // Set click listener for the profile picture ImageView
-        popupBinding.editProfilePicture.setOnClickListener {
-            // Open the image picker
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
-        }
+//        popupBinding.editProfilePicture.setOnClickListener {
+//            // Open the image picker
+//            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+//            startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
+//        }
 
         // Add a submit button to save the changes
         popupBinding.btnSubmit.setOnClickListener {
             val name = popupBinding.editName.text.toString().trim()
-            val email = popupBinding.editEmail.text.toString().trim()
+            val email = auth.currentUser?.email.toString()
 
             // Save the inputs to the ViewModel
             viewModel.saveNameAndEmail(name, email)
+
+            saveUserName(name)
+            binding.username.text = name
 
             // Show a toast message with the updated values
             val message = "Name: $name, Email: $email"
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
             alertDialog?.dismiss()
+
+            viewModel.isPopupOpen = false
         }
 
         popupBinding.btnCancel.setOnClickListener {
@@ -181,6 +188,38 @@ class ProfileFragment : Fragment() {
 
         alertDialog?.show()
         viewModel.isPopupOpen = true
+    }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+//            data?.data?.let { imageUri ->
+//                val imageUploadHelper = ImageUploadHelper(requireActivity())
+//                imageUploadHelper.handleImageUpload(imageUri)
+//            }
+//        }
+//    }
+
+    fun saveUserName(name: String) {
+
+        val firestore = FirebaseFirestore.getInstance()
+        val collectionRef = firestore.collection("user_profile")
+        val documentId = auth.currentUser?.email.toString()
+
+        val data = hashMapOf(
+
+            "name" to name
+        )
+
+        collectionRef.document(documentId)
+            .set(data)
+            .addOnSuccessListener {
+                // Data successfully saved with custom document ID
+            }
+            .addOnFailureListener { exception ->
+                // An error occurred while saving the data
+
+            }
     }
 
 

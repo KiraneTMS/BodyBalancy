@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         // Check if user is not logged in
         if (auth.currentUser == null) {
             // User is not logged in, navigate to the login page
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, SplashScreen::class.java)
             startActivity(intent)
             finish() // Optional: Close the current activity so that the user cannot go back to it without logging in
         } else {

@@ -11,27 +11,27 @@
         android:layout_height="wrap_content"
         android:hint="Enter your name" />
 
-    <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your email" />
+<!--    <EditText-->
+<!--        android:id="@+id/editEmail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Enter your email" />-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Upload Image"/>
-    <ImageView
-        android:id="@+id/editProfilePicture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_profile_placeholder"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        android:padding="16dp"
-        android:clickable="true"
-        android:contentDescription="Edit Profile Picture" />
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="Upload Image"/>-->
+<!--    <ImageView-->
+<!--        android:id="@+id/editProfilePicture"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/ic_profile_placeholder"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:adjustViewBounds="true"-->
+<!--        android:padding="16dp"-->
+<!--        android:clickable="true"-->
+<!--        android:contentDescription="Edit Profile Picture" />-->
 
 
     <LinearLayout
